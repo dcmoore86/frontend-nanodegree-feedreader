@@ -53,6 +53,7 @@ $(function() {
     describe('The menu', function() {
          const body = document.querySelector('body');
          const menuIcon = document.querySelector('.menu-icon-link');
+
          it('is hidden by default', function() {
            expect(body.className).toBe('menu-hidden');
          });
@@ -64,6 +65,7 @@ $(function() {
             } else {
               expect(body.className).toBe('');
             }
+            body.classList.toggle('menu-hidden');
           });
     });
 
@@ -95,8 +97,6 @@ $(function() {
             loadFeed(1,function (){
               entry = document.querySelector('.feed').querySelector('.entry');
               entryText2= entry.innerText;
-              console.log(entryText1);
-              console.log(entryText2);
               expect(entryText1).not.toEqual(entryText2);
               done();
             });
