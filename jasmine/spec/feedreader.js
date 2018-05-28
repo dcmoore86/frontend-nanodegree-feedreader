@@ -109,8 +109,8 @@ $(function() {
               loadFeed(1,function (){
                 entry = document.querySelector('.feed').children[0];
                 entryText2= entry.innerText;
+                done();
               });
-              done();
             });
          });
          /* Test that ensures when a new feed is loaded
@@ -118,6 +118,8 @@ $(function() {
           * the two entries' texts
           */
         it('changes the content', function (done) {
+          expect(entryText1).toBeDefined();
+          expect(entryText2).toBeDefined();
           expect(entryText1).not.toEqual(entryText2);
           done();
         });
