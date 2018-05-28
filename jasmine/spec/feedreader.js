@@ -82,7 +82,7 @@ $(function() {
 
     //Initial entries test suite
     describe('Initial Entries', function() {
-         const entry = document.querySelector('.feed').querySelector('.entry');
+         const entries = document.querySelector('.feed').children;
 
          beforeEach(function(done) {
            loadFeed(0);
@@ -93,7 +93,7 @@ $(function() {
           * a single .entry element within the .feed container.
           */
          it('has at least a single .entry element within the .feed container.', function(done) {
-           expect(entry).toBeDefined();
+           expect(entries).toBeGreaterThan(0);
            done();
          });
     });
