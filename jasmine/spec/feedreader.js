@@ -72,10 +72,8 @@ $(function() {
           */
          it('changes visibility when the menu icon is clicked', function() {
            menuIcon.click();
-           console.log(body.classList);
            expect(body.classList).not.toContain('menu-hidden');
            menuIcon.click();
-           console.log(body.classList);
            expect(body.classList).toContain('menu-hidden');
          });
     });
