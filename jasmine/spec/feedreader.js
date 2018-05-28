@@ -104,13 +104,13 @@ $(function() {
         //runs two load feed async calls and save the first entries' texts to a variable
         beforeEach(function (done) {
             loadFeed(0,function (){
-              entry = document.querySelector('.feed').querySelector('.entry');
+              entry = document.querySelector('.feed').children[0];
               entryText1= entry.innerText;
               loadFeed(1,function (){
-                entry = document.querySelector('.feed').querySelector('.entry');
+                entry = document.querySelector('.feed').children[0];
                 entryText2= entry.innerText;
               });
-                done();
+              done();
             });
          });
          /* Test that ensures when a new feed is loaded
