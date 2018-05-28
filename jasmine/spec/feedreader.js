@@ -82,6 +82,7 @@ $(function() {
 
     //Initial entries test suite
     describe('Initial Entries', function() {
+         //runs the load feed async call
          beforeEach(function(done) {
            loadFeed(0, function() {
              done();
@@ -97,27 +98,28 @@ $(function() {
            done();
          });
     });
-    // New Feed Selection test suite
-    // describe('New Feed Selection', function() {
-    //     let entries, entryText1, entryText2;
-    //     beforeEach(function (done) {
-    //         loadFeed(0,function (){
-    //             entry = document.querySelector('.feed').querySelector('.entry');
-    //             entryText1= entry.innerText;
-    //             loadFeed(1,function (){
-    //             entry = document.querySelector('.feed').querySelector('.entry');
-    //             entryText2= entry.innerText;
-    //             done();
-    //         });
-    //      });
-    //      /*test that ensures when a new feed is loaded
-    //       * by the loadFeed function that the content actually changes.
-    //       */
-    //     it('changes the content', function (done) {
-    //           expect(entryText1).not.toEqual(entryText2);
-    //           done();
-    //         });
-    //
-    //     });
-    // });
+    //New Feed Selection test suite
+    describe('New Feed Selection', function() {
+        let entries, entryText1, entryText2;
+        //runs two load feed async calls and save the first entries' texts to a variable
+        beforeEach(function (done) {
+            loadFeed(0,function (){
+              entry = document.querySelector('.feed').querySelector('.entry');
+              entryText1= entry.innerText;
+              loadFeed(1,function (){
+                entry = document.querySelector('.feed').querySelector('.entry');
+                entryText2= entry.innerText;
+              });
+                done();
+            });
+         });
+         /* Test that ensures when a new feed is loaded
+          * by the loadFeed function that the content actually changes by comparing.
+          * the two entries' texts
+          */
+        it('changes the content', function (done) {
+          expect(entryText1).not.toEqual(entryText2);
+          done();
+        });
+    });
 }());
