@@ -14,18 +14,19 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
+        /* This test makes sure that the
          * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * empty
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
+        /* Test that loops through each feed
+         * in the allFeeds object and ensures it has a URL defined
+         * and that the URL is not empty.
+         */
         it('has a list of URLs defined and none of them are empty', function() {
             allFeeds.forEach(function(feed) {
               expect(feed.url).toBeDefined();
@@ -33,32 +34,43 @@ $(function() {
             });
         });
 
-         it('has a list of names defined and none of them are empty', function() {
-             allFeeds.forEach(function(feed) {
-               expect(feed.name).toBeDefined();
-               expect(feed.name.length).not.toBe(0);
-             });
-         });
+        /* Test that loops through each feed
+         * in the allFeeds object and ensures it has a name defined
+         * and that the name is not empty.
+         */
+        it('has a list of names defined and none of them are empty', function() {
+           allFeeds.forEach(function(feed) {
+             expect(feed.name).toBeDefined();
+             expect(feed.name.length).not.toBe(0);
+           });
+        });
 
-         it('are not definted if feed index is out of range', function() {
+        /* Tests that feed indices out of range are undefined
+         */
+        it('are not defined if feed index is out of range', function() {
            underMinRange = -1;
            overMaxRange = allFeeds.length;
            expect(allFeeds[underMinRange]).not.toBeDefined();
            expect(allFeeds[overMaxRange]).not.toBeDefined();
-         });
+        });
 
 
     });
-
+    //Menu test suite
     describe('The menu', function() {
          const body = document.querySelector('body');
          const menuIcon = document.querySelector('.menu-icon-link');
 
+         /* Test that ensures the menu element is
+         * hidden by default.
+         */
          it('is hidden by default', function() {
            expect(body.className).toBe('menu-hidden');
          });
-
-          it('changes visibility when the menu icon is clicked', function() {
+         /*Test that ensures the menu changes
+          * visibility when the menu icon is clicked.
+          */
+         it('changes visibility when the menu icon is clicked', function() {
             result = body.classList.toggle('menu-hidden');
             if (result) {
               expect(body.className).toBe('menu-hidden');
@@ -66,9 +78,10 @@ $(function() {
               expect(body.className).toBe('');
             }
             body.classList.toggle('menu-hidden');
-          });
+         });
     });
 
+    //Initial entries test suite
     describe('Initial Entries', function() {
          const entry = document.querySelector('.feed').querySelector('.entry');
 
@@ -76,13 +89,16 @@ $(function() {
            loadFeed(0);
            done();
          });
-
+         /*test that ensures when the loadFeed
+          * function is called and completes its work, there is at least
+          * a single .entry element within the .feed container.
+          */
          it('has at least a single .entry element within the .feed container.', function(done) {
            expect(entry).toBeDefined();
            done();
          });
     });
-
+    // New Feed Seleciton test suite
     describe('New Feed Selection', function() {
         let entries, entryText1, entryText2;
         beforeEach(function (done) {
@@ -90,7 +106,9 @@ $(function() {
                 done();
             });
          });
-
+         /*test that ensures when a new feed is loaded
+          * by the loadFeed function that the content actually changes.
+          */
         it('changes the content', function (done) {
             entry = document.querySelector('.feed').querySelector('.entry');
             entryText1= entry.innerText;
