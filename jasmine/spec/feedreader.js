@@ -71,12 +71,12 @@ $(function() {
           * visibility when the menu icon is clicked.
           */
          it('changes visibility when the menu icon is clicked', function() {
-            let result = body.classList.toggle('menu-hidden');
-            if (result) {
-              expect(body.classList).toContain('menu-hidden');
-            } else {
-              expect(body.classList).not.toContain('menu-hidden');
-            }
+           menuIcon.click();
+           console.log(body.classList);
+           expect(body.classList).not.toContain('menu-hidden');
+           menuIcon.click();
+           console.log(body.classList);
+           expect(body.classList).toContain('menu-hidden');
          });
     });
 
