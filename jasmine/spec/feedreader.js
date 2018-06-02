@@ -65,16 +65,16 @@ $(function() {
          * hidden by default.
          */
          it('is hidden by default', function() {
-           expect(body.classList).toContain('menu-hidden');
+           expect(body.classList.contains('menu-hidden')).toBe(true);
          });
          /*Test that ensures the menu changes
           * visibility when the menu icon is clicked.
           */
          it('changes visibility when the menu icon is clicked', function() {
            menuIcon.click();
-           expect(body.classList).not.toContain('menu-hidden');
+           expect(body.classList.contains('menu-hidden')).toBe(false);
            menuIcon.click();
-           expect(body.classList).toContain('menu-hidden');
+           expect(body.classList.contains('menu-hidden')).toBe(true);
          });
     });
 
@@ -92,7 +92,6 @@ $(function() {
           */
          it('has at least a single .entry element within the .feed container.', function(done) {
            let entry = document.querySelector('.feed .entry');
-           console.log(entry);
            expect(entry).toBeDefined();
            done();
          });
